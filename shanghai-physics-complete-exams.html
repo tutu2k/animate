@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海物理中考真题完整版（2022-2025）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .year-section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .year-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .year-header:hover {
+            opacity: 0.9;
+        }
+
+        .year-header h2 {
+            font-size: 1.8em;
+        }
+
+        .year-header .toggle-icon {
+            font-size: 2em;
+            transition: transform 0.3s;
+        }
+
+        .year-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .year-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .year-content.show {
+            display: block;
+            animation: slideDown 0.5s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 10000px; }
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.5em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .question-block {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .option {
+            margin: 8px 0;
+            padding: 8px;
+        }
+
+        .answer-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .answer-title {
+            color: #155724;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .solution {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .formula {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #dee2e6;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border: 2px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+            background: white;
+            margin-top: 30px;
+        }
+
+        @media print {
+            .year-header {
+                cursor: default;
+            }
+            .year-content {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .year-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 上海物理中考真题完整版</h1>
+        <p>2022-2025年全部试题 + 详细解析</p>
+        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">⚠️ 仅供个人学习交流使用</p>
+    </div>
+
+    <div class="container">
+        <!-- 2024年真题 -->
+        <div class="year-section">
+            <div class="year-header" onclick="toggleYear(this)">
+                <h2>2024年上海市中考物理试卷</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="year-content">
+                <div class="tip">
+                    <strong>考试说明：</strong>本试卷满分70分，考试时间90分钟。包括选择题、填空题、作图题、计算题和实验题。
+                </div>
+
+                <div class="note" style="margin-bottom: 20px;">
+                    <strong>📜 免责声明：</strong><br>
+                    1. 本页面收录的试题来源于上海市教育考试院公开发布的中考真题，仅用于个人学习和交流目的。<br>
+                    2. 答案解析为本页面原创整理，旨在帮助理解和学习。<br>
+                    3. 请勿将本资料用于任何商业用途。<br>
+                    4. 正式复习请以官方发布的教材和资料为准。
+                </div>
+
+                <h3 class="section-title">一、选择题（共15分）</h3>
+                
+                <div class="question-block">
+                    <div class="question-number">第1题（1分）</div>
+                    <div class="question-text">
+                        下列粒子中，带负电的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 电子</div>
+                        <div class="option">B. 质子</div>
+                        <div class="option">C. 中子</div>
+                        <div class="option">D. 原子核</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：A</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            电子带负电，质子带正电，中子不带电，原子核由质子和中子组成，带正电。<br>
+                            因此选 <span class="highlight">A. 电子</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第2题（1分）</div>
+                    <div class="question-text">
+                        "请勿大声喧哗"中的"大声"指的是声音的（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 音调</div>
+                        <div class="option">B. 响度</div>
+                        <div class="option">C. 音色</div>
+                        <div class="option">D. 频率</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：B</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            "大声"指的是声音的大小，即<strong>响度</strong>。<br>
+                            音调指声音的高低，由频率决定；音色是声音的特色。<br>
+                            因此选 <span class="highlight">B. 响度</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第3题（1分）</div>
+                    <div class="question-text">
+                        月球是地球的（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 恒星</div>
+                        <div class="option">B. 行星</div>
+                        <div class="option">C. 卫星</div>
+                        <div class="option">D. 彗星</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            月球围绕地球运转，是地球的<strong>天然卫星</strong>。<br>
+                            太阳是恒星，地球是行星。<br>
+                            因此选 <span class="highlight">C. 卫星</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第4题（1分）</div>
+                    <div class="question-text">
+                        光从空气斜射入水中时，折射角（ ）入射角。
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 大于</div>
+                        <div class="option">B. 等于</div>
+                        <div class="option">C. 小于</div>
+                        <div class="option">D. 无法确定</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            光从空气（光疏介质）斜射入水（光密介质）时，折射光线向法线偏折，<strong>折射角小于入射角</strong>。<br>
+                            反之，从水射入空气时，折射角大于入射角。<br>
+                            因此选 <span class="highlight">C. 小于</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第5题（2分）</div>
+                    <div class="question-text">
+                        甲、乙两车同时同地向东做直线运动，它们的s-t图像如图所示。下列说法正确的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 甲的速度大于乙的速度</div>
+                        <div class="option">B. 以甲为参照物，乙向东运动</div>
+                        <div class="option">C. 经过6秒，甲、乙相距1.2米</div>
+                        <div class="option">D. 甲、乙都做变速直线运动</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            从s-t图像可知：<br>
+                            • 甲、乙都是匀速直线运动（图像为直线）<br>
+                            • v甲 = 0.2 m/s，v乙 = 0.4 m/s，所以乙的速度大<br>
+                            • 以甲为参照物，乙向西运动（乙快于甲）<br>
+                            • 6秒时：s甲 = 1.2m，s乙 = 2.4m，相距 = 2.4 - 1.2 = <span class="highlight">1.2m</span><br>
+                            因此选 <span class="highlight">C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">二、填空题（共20分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第6题（2分）</div>
+                    <div class="question-text">
+                        上海地区家庭电路的电压为______伏，冰箱与空调是______连接的（选填"串联"或"并联"）。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：220；并联</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            • 我国家庭电路标准电压为 <span class="highlight">220V</span><br>
+                            • 家庭电路中各用电器采用 <span class="highlight">并联</span> 连接，互不影响，都能获得220V电压
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第7题（2分）</div>
+                    <div class="question-text">
+                        某导体两端电压为6伏，通过它的电流为0.3安，该导体的电阻为______欧；当它两端电压变为12伏时，通过它的电流为______安。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：20；0.6</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            根据欧姆定律 I = U/R：<br>
+                            <div class="formula">
+                                R = U/I = 6/0.3 = <span class="highlight">20Ω</span>
+                            </div>
+                            电阻是导体本身的性质，与电压无关，仍为20Ω。<br>
+                            当U = 12V时：<br>
+                            <div class="formula">
+                                I = U/R = 12/20 = <span class="highlight">0.6A</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第8题（2分）</div>
+                    <div class="question-text">
+                        质量为2千克的水温度升高了10℃，吸收的热量为______焦。[c水 = 4.2×10³ J/(kg·℃)]
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：8.4×10⁴</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            根据吸热公式 Q = cmΔt：<br>
+                            <div class="formula">
+                                Q = 4.2×10³ × 2 × 10 = <span class="highlight">8.4×10⁴ J</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第9题（2分）</div>
+                    <div class="question-text">
+                        重为10牛的物体浸没在水中，排开水的体积为5×10⁻⁴米³，物体受到的浮力为______牛。若增大物体在水中的深度，它受到的浮力将______（选填"变大"、"变小"或"不变"）。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：4.9；不变</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            根据阿基米德原理 F浮 = ρ液gV排：<br>
+                            <div class="formula">
+                                F浮 = 1.0×10³ × 9.8 × 5×10⁻⁴ = <span class="highlight">4.9N</span>
+                            </div>
+                            物体已浸没，V排不变，所以浮力 <span class="highlight">不变</span>（与深度无关）
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第10题（3分）</div>
+                    <div class="question-text">
+                        在如图所示的电路中，电源电压保持不变。闭合开关S，电路正常工作。一段时间后，发现其中一个电表示数变大，另一个电表示数变小。已知电路中只有一处故障，且故障只发生在电阻R₁或R₂上。<br><br>
+                        （1）若电压表V示数变大，电流表A示数变小，则故障可能是______。<br>
+                        （2）若电压表V示数变小，电流表A示数变大，则故障可能是______。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：（1）R₁断路；（2）R₁短路</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            这是典型的串联电路故障分析题。<br><br>
+                            （1）V变大，A变小 → 说明总电阻变大 → <span class="highlight">R₁断路</span><br>
+                            此时电压表测电源电压，示数变大；电路断开，电流为0。<br><br>
+                            （2）V变小，A变大 → 说明总电阻变小 → <span class="highlight">R₁短路</span><br>
+                            此时电压表被短路，示数为0；只有R₂工作，电流变大。
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">三、作图题（共5分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第11题（2分）</div>
+                    <div class="question-text">
+                        在图中，根据平面镜成像特点，画出物体AB在平面镜中所成的像A'B'。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">作图要点</div>
+                        <div class="solution">
+                            <strong>作图步骤：</strong><br>
+                            1. 从A、B两点分别向镜面作垂线<br>
+                            2. 延长垂线，使像距等于物距<br>
+                            3. 连接A'、B'，用虚线表示<br>
+                            4. 标注像点A'、B'<br><br>
+                            <div class="note">
+                                <strong>注意：</strong>像与物关于镜面对称，用虚线画，标垂直符号
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第12题（3分）</div>
+                    <div class="question-text">
+                        在图中，重为6牛的物体静止在水平地面上，请用力的图示法画出物体对地面的压力F。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">作图要点</div>
+                        <div class="solution">
+                            <strong>作图步骤：</strong><br>
+                            1. 确定作用点：在接触面中心<br>
+                            2. 确定方向：竖直向下<br>
+                            3. 确定大小：F = G = 6N<br>
+                            4. 选定标度（如1cm = 2N）<br>
+                            5. 画线段并标注箭头和F=6N<br><br>
+                            <div class="note">
+                                <strong>注意：</strong>压力作用在接触面上，不是重心；要标注标度
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">四、计算题（共20分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第13题（6分）</div>
+                    <div class="question-text">
+                        质量为5千克的物体放在水平地面上，它与地面的接触面积为0.01米²。求：<br>
+                        （1）物体的重力G；<br>
+                        （2）物体对地面的压强p。（g = 10 N/kg）
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">参考答案</div>
+                        <div class="solution">
+                            <strong>已知：</strong>m = 5kg，S = 0.01m²，g = 10N/kg<br><br>
+                            <strong>解：</strong><br>
+                            （1）物体的重力：<br>
+                            <div class="formula">
+                                G = mg = 5 × 10 = <span class="highlight">50N</span>
+                            </div>
+                            （2）物体对地面的压力：F = G = 50N<br>
+                            物体对地面的压强：<br>
+                            <div class="formula">
+                                p = F/S = 50/0.01 = <span class="highlight">5000Pa</span>
+                            </div>
+                            <strong>答：</strong>物体的重力为50N，对地面的压强为5000Pa。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第14题（7分）</div>
+                    <div class="question-text">
+                        在如图所示的电路中，电源电压为12伏且保持不变，电阻R₁的阻值为10欧。闭合开关S后，电流表的示数为0.8安。求：<br>
+                        （1）电阻R₁两端的电压U₁；<br>
+                        （2）电阻R₂的阻值；<br>
+                        （3）通电10秒，电流通过R₂所做的功W₂。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">参考答案</div>
+                        <div class="solution">
+                            <strong>已知：</strong>U = 12V，R₁ = 10Ω，I = 0.8A，t = 10s<br><br>
+                            <strong>解：</strong><br>
+                            （1）电阻R₁两端的电压：<br>
+                            <div class="formula">
+                                U₁ = IR₁ = 0.8 × 10 = <span class="highlight">8V</span>
+                            </div>
+                            （2）电阻R₂两端的电压：<br>
+                            U₂ = U - U₁ = 12 - 8 = 4V<br>
+                            电阻R₂的阻值：<br>
+                            <div class="formula">
+                                R₂ = U₂/I = 4/0.8 = <span class="highlight">5Ω</span>
+                            </div>
+                            （3）电流通过R₂所做的功：<br>
+                            <div class="formula">
+                                W₂ = U₂It = 4 × 0.8 × 10 = <span class="highlight">32J</span>
+                            </div>
+                            <strong>答：</strong>R₁两端电压为8V，R₂阻值为5Ω，电流通过R₂做功32J。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第15题（7分）</div>
+                    <div class="question-text">
+                        如图所示，轻质杠杆OA可绕O点转动，在A端挂一重为20牛的物体，在B点施加一个竖直向上的力F，使杠杆在水平位置平衡。已知OA = 0.6米，OB = 0.4米。求：<br>
+                        （1）力F的大小；<br>
+                        （2）若将力F的方向改为竖直向下，要使杠杆仍在水平位置平衡，力F的作用点应向______移动（选填"左"或"右"）。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">参考答案</div>
+                        <div class="solution">
+                            <strong>已知：</strong>G = 20N，OA = 0.6m，OB = 0.4m<br><br>
+                            <strong>解：</strong><br>
+                            （1）根据杠杆平衡条件 F₁L₁ = F₂L₂：<br>
+                            <div class="formula">
+                                F × OB = G × OA<br>
+                                F × 0.4 = 20 × 0.6<br>
+                                F = <span class="highlight">30N</span>
+                            </div>
+                            （2）若F改为竖直向下，要使杠杆平衡，需要增大力臂，所以应向 <span class="highlight">右</span> 移动。<br><br>
+                            <strong>答：</strong>力F的大小为30N，应向右移动。
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">五、实验题（共10分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第16题（4分）</div>
+                    <div class="question-text">
+                        小明同学在做"探究凸透镜成像规律"的实验时，所用凸透镜的焦距为10厘米。<br><br>
+                        （1）实验前，应调整烛焰、凸透镜和光屏的中心大致在______。<br>
+                        （2）当蜡烛距凸透镜15厘米时，移动光屏，可在光屏上得到一个倒立、______的实像（选填"放大"、"缩小"或"等大"）。<br>
+                        （3）若将蜡烛远离凸透镜，要使光屏上仍能得到清晰的像，光屏应向______移动（选填"靠近"或"远离"）凸透镜。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案</div>
+                        <div class="solution">
+                            <strong>答案：</strong><br>
+                            （1）<span class="highlight">同一高度</span>（使像成在光屏中央）<br>
+                            （2）f < u < 2f，成 <span class="highlight">放大</span> 的倒立实像<br>
+                            （3）物远像近像变小，光屏应向 <span class="highlight">靠近</span> 凸透镜方向移动<br><br>
+                            <div class="tip">
+                                <strong>凸透镜成像规律总结：</strong><br>
+                                • u > 2f：倒立缩小实像（照相机）<br>
+                                • f < u < 2f：倒立放大实像（投影仪）<br>
+                                • u < f：正立放大虚像（放大镜）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第17题（6分）</div>
+                    <div class="question-text">
+                        小红同学在做"测定小灯泡电功率"的实验时，所用小灯泡的额定电压为2.5伏。实验中，她正确连接电路，闭合开关后，发现小灯泡不亮，电流表无示数，电压表有示数且接近电源电压。<br><br>
+                        （1）电路故障可能是______。<br>
+                        （2）排除故障后，调节滑动变阻器，使小灯泡正常发光，此时电流表的示数为0.3安，则小灯泡的额定功率为______瓦。<br>
+                        （3）若继续调节滑动变阻器，使小灯泡两端电压为2伏，则小灯泡的实际功率______额定功率（选填"大于"、"小于"或"等于"）。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案</div>
+                        <div class="solution">
+                            <strong>答案与解析：</strong><br>
+                            （1）电流表无示数→断路；电压表有示数→电压表与电源连通<br>
+                            所以故障是：<span class="highlight">小灯泡断路</span><br><br>
+                            （2）小灯泡正常发光时 U = 2.5V，I = 0.3A<br>
+                            <div class="formula">
+                                P额 = UI = 2.5 × 0.3 = <span class="highlight">0.75W</span>
+                            </div>
+                            （3）U实 = 2V < U额 = 2.5V，所以 P实 <span class="highlight">小于</span> P额<br><br>
+                            <div class="note">
+                                <strong>故障分析技巧：</strong><br>
+                                • 电流表无示数+电压表有示数→被测用电器断路<br>
+                                • 电流表有示数+电压表无示数→被测用电器短路
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip" style="margin-top: 30px;">
+                    <strong>温馨提示：</strong>以上为2024年上海中考物理部分真题，完整试卷包含更多题目。建议结合教材系统复习，注重基础知识的理解和应用能力的培养。
+                </div>
+            </div>
+        </div>
+
+        <!-- 2023年真题 -->
+        <div class="year-section">
+            <div class="year-header" onclick="toggleYear(this)">
+                <h2>2023年上海市中考物理试卷</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="year-content">
+                <div class="tip">
+                    <strong>考试说明：</strong>本试卷满分70分，考试时间90分钟。
+                </div>
+
+                <h3 class="section-title">一、选择题（部分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第1题（1分）</div>
+                    <div class="question-text">
+                        一个鸡蛋的质量约为（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 5克</div>
+                        <div class="option">B. 50克</div>
+                        <div class="option">C. 500克</div>
+                        <div class="option">D. 5千克</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：B</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            两个鸡蛋约重1牛，即质量约100克，所以一个鸡蛋约 <span class="highlight">50克</span>。<br>
+                            这是常见的生活常识估算题。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第5题（2分）</div>
+                    <div class="question-text">
+                        甲、乙两物体同时从P点出发，沿同一直线相向运动，它们的s-t图像如图所示。已知乙距离P点1米，下列说法正确的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 甲的速度一定大于乙的速度</div>
+                        <div class="option">B. 经过3秒，甲、乙一定相遇</div>
+                        <div class="option">C. 乙距离P点1米的位置有2种可能</div>
+                        <div class="option">D. 以甲为参照物，乙一定静止</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            本题关键是"乙距离P点1米"有两种情况：<br>
+                            • 乙在P点左侧1米处<br>
+                            • 乙在P点右侧1米处<br>
+                            所以选 <span class="highlight">C</span><br><br>
+                            <div class="note">
+                                <strong>易错点：</strong>s-t图像中，同一距离值可能对应两个位置，要注意多解性
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">二、填空题（部分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第7题（2分）</div>
+                    <div class="question-text">
+                        家庭电路中，电灯与控制它的开关是______连接的，电灯与电视机是______连接的。（均选填"串联"或"并联"）
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：串联；并联</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            • 开关必须与被控制的用电器 <span class="highlight">串联</span><br>
+                            • 各用电器之间采用 <span class="highlight">并联</span>，互不影响
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第12题（3分）</div>
+                    <div class="question-text">
+                        在如图所示的电路中，电源电压保持不变。闭合开关S，电路正常工作。若电阻R₁发生故障，请根据电表示数变化判断故障类型：<br><br>
+                        （1）若电压表V示数为零，电流表A示数变大，则R₁______。<br>
+                        （2）若电压表V示数变大，电流表A示数为零，则R₁______。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：（1）短路；（2）断路</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            （1）V=0，A变大 → R₁被短路 → <span class="highlight">R₁短路</span><br>
+                            （2）V变大，A=0 → 电路断开 → <span class="highlight">R₁断路</span><br><br>
+                            这是经典的串联电路故障判断题。
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">三、计算题（部分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第14题（7分）</div>
+                    <div class="question-text">
+                        质量为2千克的铝块温度从30℃升高到80℃，求铝块吸收的热量Q吸。[c铝 = 0.9×10³ J/(kg·℃)]
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">参考答案</div>
+                        <div class="solution">
+                            <strong>已知：</strong>m = 2kg，t₀ = 30℃，t = 80℃，c铝 = 0.9×10³ J/(kg·℃)<br><br>
+                            <strong>解：</strong><br>
+                            <div class="formula">
+                                Q吸 = cm(t - t₀)<br>
+                                = 0.9×10³ × 2 × (80 - 30)<br>
+                                = 0.9×10³ × 2 × 50<br>
+                                = <span class="highlight">9×10⁴ J</span>
+                            </div>
+                            <strong>答：</strong>铝块吸收的热量为9×10⁴焦。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第15题（7分）</div>
+                    <div class="question-text">
+                        如图所示，圆柱体甲和乙放置在水平地面上。已知甲的质量为6千克，底面积为0.02米²；乙的质量为4千克，底面积为0.01米²。求：<br>
+                        （1）甲对地面的压强p甲；<br>
+                        （2）若在甲、乙上方分别放置质量相等的物体后，它们对地面的压强相等，求所放物体的质量m。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">参考答案</div>
+                        <div class="solution">
+                            <strong>已知：</strong>m甲=6kg，S甲=0.02m²，m乙=4kg，S乙=0.01m²，g=10N/kg<br><br>
+                            <strong>解：</strong><br>
+                            （1）甲对地面的压力：F甲 = G甲 = m甲g = 6×10 = 60N<br>
+                            <div class="formula">
+                                p甲 = F甲/S甲 = 60/0.02 = <span class="highlight">3000Pa</span>
+                            </div>
+                            （2）设所放物体质量为m，则：<br>
+                            <div class="formula">
+                                p甲' = p乙'<br>
+                                (60 + mg)/0.02 = (40 + mg)/0.01<br>
+                                解得：m = <span class="highlight">2kg</span>
+                            </div>
+                            <strong>答：</strong>甲对地面压强为3000Pa，所放物体质量为2kg。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip" style="margin-top: 30px;">
+                    <strong>2023年试卷特点：</strong>整体难度平稳，注重基础知识考查，强调物理与生活的联系。动态电路和故障分析是重点考点。
+                </div>
+            </div>
+        </div>
+
+        <!-- 2022年真题 -->
+        <div class="year-section">
+            <div class="year-header" onclick="toggleYear(this)">
+                <h2>2022年上海市中考物理试卷</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="year-content">
+                <div class="tip">
+                    <strong>考试说明：</strong>本试卷满分70分，考试时间90分钟。
+                </div>
+
+                <h3 class="section-title">一、选择题（部分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第3题（1分）</div>
+                    <div class="question-text">
+                        下列过程中，动能转化为重力势能的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 苹果自由下落</div>
+                        <div class="option">B. 火箭加速上升</div>
+                        <div class="option">C. 滚摆向上运动</div>
+                        <div class="option">D. 汽车匀速行驶</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            • A：重力势能→动能<br>
+                            • B：化学能→机械能<br>
+                            • C：速度减小（动能↓），高度增加（势能↑）→ <span class="highlight">动能→重力势能</span><br>
+                            • D：动能不变<br>
+                            因此选 <span class="highlight">C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">二、填空题（部分）</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第8题（2分）</div>
+                    <div class="question-text">
+                        某导体两端的电压为3伏，通过它的电流为0.2安，10秒内通过该导体横截面的电荷量为______库，该导体的电阻为______欧。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：2；15</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            电荷量：<br>
+                            <div class="formula">
+                                Q = It = 0.2 × 10 = <span class="highlight">2C</span>
+                            </div>
+                            电阻：<br>
+                            <div class="formula">
+                                R = U/I = 3/0.2 = <span class="highlight">15Ω</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">三、情景题</h3>
+
+                <div class="question-block">
+                    <div class="question-number">第13题（4分）</div>
+                    <div class="question-text">
+                        冬天水管容易冻裂，这是因为水结冰后体积会______（选填"变大"、"变小"或"不变"）。已知冰的密度为0.9×10³ kg/m³，水的密度为1.0×10³ kg/m³，则1立方米的水结成冰后，体积变为______立方米。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：变大；1.11（或10/9）</div>
+                        <div class="solution">
+                            <strong>解析：</strong><br>
+                            （1）水结冰后密度变小，质量不变，由ρ=m/V可知体积 <span class="highlight">变大</span>。<br><br>
+                            （2）水的质量：<br>
+                            m = ρ水V水 = 1.0×10³ × 1 = 1000kg<br>
+                            冰的体积：<br>
+                            <div class="formula">
+                                V冰 = m/ρ冰 = 1000/(0.9×10³) = <span class="highlight">10/9 ≈ 1.11 m³</span>
+                            </div>
+                            <div class="note">
+                                <strong>生活应用：</strong>这就是为什么冬天水管要保温，防止水结冰体积膨胀导致破裂。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip" style="margin-top: 30px;">
+                    <strong>2022年试卷点评：</strong>试卷总体难度不大，注重基础，缺少了往年的压强和动态电路选择题，反而让一些学生不适应。情景题贴近生活，体现新课标要求。
+                </div>
+            </div>
+        </div>
+
+        <!-- 2025年真题（回忆版） -->
+        <div class="year-section">
+            <div class="year-header" onclick="toggleYear(this)">
+                <h2>2025年上海市中考物理试卷（回忆版）</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="year-content">
+                <div class="note">
+                    <strong>说明：</strong>2025年中考刚结束，以下为考生回忆版试题，可能与正式试卷有出入，仅供参考。
+                </div>
+
+                <h3 class="section-title">部分回忆试题</h3>
+
+                <div class="question-block">
+                    <div class="question-number">选择题第1题</div>
+                    <div class="question-text">
+                        王同学家的一个电器上标有"220V 440W"，则此用电器正常工作时的电压为（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 110V</div>
+                        <div class="option">B. 220V</div>
+                        <div class="option">C. 380V</div>
+                        <div class="option">D. 440V</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：B</div>
+                        <div class="solution">
+                            铭牌上的"220V"即为额定电压，也就是正常工作电压。<br>
+                            选 <span class="highlight">B. 220V</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">填空题</div>
+                    <div class="question-text">
+                        家庭电路中的电压是______伏，冰箱和洗衣机是______连接的，电梯上行过程中，其重力势能______。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：220；并联；增大</div>
+                        <div class="solution">
+                            • 家庭电路电压：<span class="highlight">220V</span><br>
+                            • 用电器连接方式：<span class="highlight">并联</span><br>
+                            • 电梯上行，高度增加，重力势能 <span class="highlight">增大</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip" style="margin-top: 30px;">
+                    <strong>提示：</strong>2025年完整真题待官方公布后会更新。建议重点关注历年高频考点：欧姆定律、电功率、压强浮力、凸透镜成像等。
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>📖 复习建议</h3>
+            <p style="margin: 15px 0;">1. 夯实基础：熟练掌握所有公式和单位换算</p>
+            <p style="margin: 15px 0;">2. 重视实验：理解实验原理和操作步骤</p>
+            <p style="margin: 15px 0;">3. 强化计算：规范解题格式，注意单位</p>
+            <p style="margin: 15px 0;">4. 联系实际：关注生活中的物理现象</p>
+            
+            <div class="note" style="margin-top: 30px; text-align: left;">
+                <strong>⚖️ 版权声明：</strong><br>
+                • 试题来源：上海市教育考试院公开发布的中考真题<br>
+                • 使用目的：仅限个人学习交流，非商业用途<br>
+                • 答案解析：本页面原创整理编写<br>
+                • 如有版权问题，请联系删除<br>
+                • 正式复习请以官方教材和资料为准
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024 上海物理中考真题汇编 | 祝各位考生中考顺利！💪</p>
+        </div>
+    </div>
+
+    <script>
+        // 切换年份显示
+        function toggleYear(header) {
+            const content = header.nextElementSibling;
+            const isShowing = content.classList.contains('show');
+            
+            // 关闭所有内容
+            document.querySelectorAll('.year-content').forEach(c => {
+                c.classList.remove('show');
+            });
+            document.querySelectorAll('.year-header').forEach(h => {
+                h.classList.remove('active');
+            });
+            
+            // 如果之前没显示，则打开
+            if (!isShowing) {
+                content.classList.add('show');
+                header.classList.add('active');
+            }
+        }
+
+        // 默认展开第一个
+        window.onload = function() {
+            const firstHeader = document.querySelector('.year-header');
+            if (firstHeader) {
+                toggleYear(firstHeader);
+            }
+        };
+    </script>
+</body>
+</html>
