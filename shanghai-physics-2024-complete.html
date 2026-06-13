@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顾书侨的中考物理复习资料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .year-section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .year-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .year-header:hover {
+            opacity: 0.9;
+        }
+
+        .year-header h2 {
+            font-size: 1.8em;
+        }
+
+        .year-content {
+            padding: 30px;
+            display: none;
+        }
+
+        .year-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .question-block {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .question-number {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .options {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .options div {
+            margin: 5px 0;
+        }
+
+        .answer-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .answer-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .solution {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .formula {
+            background: #fff3e0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tip {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note {
+            background: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        @media print {
+            .year-content {
+                display: block !important;
+            }
+            
+            .year-header {
+                cursor: default;
+            }
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .toggle-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        .encouragement-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border: 3px solid #ff6b6b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .encouragement-box h3 {
+            color: #d63031;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .encouragement-box p {
+            color: #2d3436;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 顾书侨的中考物理复习资料</h1>
+        <p>2024年上海中考物理真题完整版 + 详细解析</p>
+        <p style="font-size: 1.1em; margin-top: 15px; opacity: 0.95;">💪 加油，顾书侨！相信自己，你一定能行！</p>
+        <p style="font-size: 0.95em; margin-top: 10px; opacity: 0.9;">⚠️ 仅供个人学习交流使用</p>
+    </div>
+
+    <div class="container">
+        <!-- 2024年真题 -->
+        <div class="year-section">
+            <div class="year-header" onclick="toggleYear(this)">
+                <h2>📝 2024年上海市中考物理试卷（完整版）</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="year-content active">
+                <div class="note">
+                    <strong>📜 免责声明：</strong><br>
+                    本页面收录的试题来源于上海市教育考试院公开发布的中考真题，仅用于个人学习和交流目的。<br>
+                    答案解析为本页面原创整理，旨在帮助理解和学习。请勿将本资料用于任何商业用途。
+                </div>
+
+                <div class="encouragement-box">
+                    <h3>🌟 给顾书侨的鼓励</h3>
+                    <p>每一道题都是进步的机会！<br>
+                    认真思考，仔细分析，你一定能够掌握这些知识点！<br>
+                    加油！💪✨</p>
+                </div>
+
+                <div class="tip">
+                    <strong>考试说明：</strong>本场考试时间60分钟，试卷满分70分。包括选择题、填空题、作图题和综合题。
+                </div>
+
+                <!-- 一、选择题 -->
+                <div class="section-title">一、选择题（本大题共6题，每题2分，共12分）</div>
+
+                <div class="question-block">
+                    <div class="question-number">第1题（2分）</div>
+                    <div class="question-text">一个中学生身体的质量最接近的是（ ）</div>
+                    <div class="options">
+                        <div>A. 0.5kg</div>
+                        <div>B. 5kg</div>
+                        <div>C. 50kg</div>
+                        <div>D. 500kg</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：C</div>
+                        <div class="solution">
+                            <strong>解析：</strong>成年人的质量在70kg左右，中学生的质量比成年人小一些，在50kg左右，故ABD不符合题意，C符合题意。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第2题（2分）</div>
+                    <div class="question-text">在一个氧原子中，带负电的粒子是（ ）</div>
+                    <div class="options">
+                        <div>A. 电子</div>
+                        <div>B. 氧原子</div>
+                        <div>C. 质子</div>
+                        <div>D. 中子</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：A</div>
+                        <div class="solution">
+                            <strong>解析：</strong>原子是由带负电的电子和原子核组成的，原子核又是由带正电的质子和不带电的中子构成的，所以一个氧原子带负电的粒子是电子，故A符合题意，BCD不符合题意。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第3题（2分）</div>
+                    <div class="question-text">有一束光从空气中斜射入平静的水面时，若入射角为60°，则折射角为（ ）</div>
+                    <div class="options">
+                        <div>A. 0°</div>
+                        <div>B. 40°</div>
+                        <div>C. 60°</div>
+                        <div>D. 90°</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：B</div>
+                        <div class="solution">
+                            <strong>解析：</strong>当光垂直入射时，光沿直线传播进入水中，折射角等于0°。一束光从空气中斜射向平静的水面，入射角为60°，光从空气斜射入水中，折射角小于入射角，即折射角小于60°，故B符合题意。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第4题（2分）</div>
+                    <div class="question-text">物理王坐电梯回家时，电梯匀速上升。若他对电梯的压力为F₁，电梯对他的支持力为F₂，他受到的重力为G，则下列判断中正确的是（ ）</div>
+                    <div class="options">
+                        <div>A. F₁ > G</div>
+                        <div>B. F₂ > G</div>
+                        <div>C. F₁和F₂是平衡力</div>
+                        <div>D. F₂和G是平衡力</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：D</div>
+                        <div class="solution">
+                            <strong>解析：</strong>电梯匀速上升，小明也随电梯一起匀速上升，小明处于平衡状态，小明受到的重力与电梯对他的支持力是一对平衡力，大小相等，即F₂和G是平衡力，F₂ = G；小明对电梯的压力和电梯对他的支持力为相互作用力，大小相等，即F₁ = F₂。故ABC错误，D正确。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第5题（2分）</div>
+                    <div class="question-text">如图所示是电烙铁工作的原理图。它正常工作时，两端的电压为220伏。在预热状态时，通过它的电流较小；在加热状态时，通过它的电流较大，则下列选项中正确的是（ ）</div>
+                    <div class="options">
+                        <div>A. 闭合开关S，此时小灯熄灭，处于预热状态</div>
+                        <div>B. 断开开关S，此时小灯发光，处于加热状态</div>
+                        <div>C. 闭合开关S，此时小灯发光，处于预热状态</div>
+                        <div>D. 闭合开关S，此时小灯熄灭，处于加热状态</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：D</div>
+                        <div class="solution">
+                            <strong>解析：</strong>由电路图可知，断开开关S时，R与L串联，小灯发光，电路中电阻较大，电流较小，由P = U²/R可知此时电功率较小，处于预热状态；闭合开关S，灯泡被短路，灯熄灭，电路为只有R的简单电路，电路中电阻较小，电流较大，由P = U²/R可知此时电功率较大，处于加热状态，故ABC错误，D正确。
+                            <div class="formula">P = U²/R</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第6题（2分）</div>
+                    <div class="question-text">光具座上有凸透镜、光屏及发光源各一个。当光屏和凸透镜的距离为10cm时，此时在光屏上成缩小的像。物理王把光屏沿着光具座移动5cm后，再次移动光源的位置使成清晰的像。对于该像的情况，下列选项正确的是（ ）</div>
+                    <div class="options">
+                        <div>A. 一定成放大的像</div>
+                        <div>B. 可能成缩小的像</div>
+                        <div>C. 成像可能比原来小</div>
+                        <div>D. 成像一定比原来小</div>
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：B</div>
+                        <div class="solution">
+                            <strong>解析：</strong>当光屏成倒立、缩小的实像，则f < v = 10cm < 2f，解得5cm < f < 10cm。<br>
+                            把光屏沿着光具座靠近凸透镜5cm时，v = 10cm - 5cm = 5cm < f，光屏不成像；<br>
+                            把光屏沿着光具座远离凸透镜5cm后，再次移动光源的位置使成清晰的像，则f < v = 10cm + 5cm = 15cm < 2f，像距变大，物距变小仍为u > 2f，根据"物近像远像大"的成实像规律，成像大小变大，但只是比原来变大了。当u > 2f时，光屏上成倒立、缩小的实像，故A错误，B正确。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 二、填空题 -->
+                <div class="section-title">二、填空题（本大题共7题，共24分）</div>
+
+                <div class="question-block">
+                    <div class="question-number">第7题</div>
+                    <div class="question-text">家庭电路中的冰箱和空调是________连接的（选填"串联"或"并联"），标有"220V 100W"的电器正常工作时，两端的电压为________V，当此电器正常工作2小时，耗电为________度。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 并联 ② 220 ③ 0.2</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1] 家庭电路中，各用电器之间互不影响，是并联的，故冰箱和空调是并联的。<br>
+                            [2] 标有"220V 100W"字样的电灯，额定电压为220V，即正常工作的电压为220V。<br>
+                            [3] 正常工作2小时，耗电为W = Pt = 0.1kW × 2h = 0.2kW·h，即正常工作2小时，耗电0.2度。
+                            <div class="formula">W = Pt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第8题</div>
+                    <div class="question-text">塔吊吊起重物，在竖直方向匀速上升时，若以地面为参照物，则此重物是________的（选填"运动"或"静止"）；若拉力为1×10⁴N，重物上升的距离为40m，重物上升所用的时间为50s，则拉力做功为________焦，功率为________瓦。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 运动 ② 4×10⁵J ③ 8×10³W</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1] 重物相对于地面的位置在不断变化，所以以地面为参照物，重物是运动的。<br>
+                            [2] 拉力做的功为W = Fs = 1×10⁴N × 40m = 4×10⁵J<br>
+                            [3] 功率为P = W/t = 4×10⁵J / 50s = 8×10³W
+                            <div class="formula">W = Fs<br>P = W/t</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第9题</div>
+                    <div class="question-text">地球上的科学家可以通过________和天宫空间站中的宇航员进行交流，地球在太阳系里属于________（选填"行星"或"卫星"或"恒星"），若空间站在太空中执行任务时，撞到较小的太空垃圾，太空垃圾会被"撞飞"，说明力可以改变物体的________。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 电磁波 ② 行星 ③ 运动状态</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1] 电磁波可以在真空中传播，所以地球上的科学家可以通过电磁波和天宫空间站中的宇航员进行交流。<br>
+                            [2] 太阳是太阳系的中心，太阳是一颗恒星，地球是太阳系中的一颗行星。<br>
+                            [3] 若空间站在太空中执行任务时，撞到较小的太空垃圾，太空垃圾会被"撞飞"，说明力可以改变物体的运动状态。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第10题</div>
+                    <div class="question-text">小浦用一个弹簧测力计竖直悬空拉着一个物体，此时弹簧测力计的示数为3.0N。他将物体浸没在水中，此时弹簧测力器的示数变为2.0牛，则浮力的大小是________牛，方向为________；若将物体继续向下移动，则弹簧测力计的示数大小________（选填"变大"或"不变"或"变小"）。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 1 ② 竖直向上 ③ 不变</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1][2] 由题意可知，物体的重力为3N，将物体浸没在水中，物体受到竖直向上的浮力，由称重法可知，浮力的大小F浮 = G - F示 = 3N - 2N = 1N。<br>
+                            [3] 物体完全浸没在水中，若将物体继续向下移动，物体排开水的体积不变，由F浮 = ρ液gV排可知，物体受到的浮力不变，由F示 = G - F浮可知，弹簧测力计的示数大小不变。
+                            <div class="formula">F浮 = G - F示<br>F浮 = ρ液gV排</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第11题</div>
+                    <div class="question-text">一个小车往斜坡向上运动时，它的s-t图如下图所示。它在30s内通过的路程为________米，在此过程，小车的动能________（选填"变大"或"不变"或"变小"）的。若小车突然急刹车，则它的惯性________（选填"变大"或"不变"或"变小"）。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 90 ② 不变 ③ 不变</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1] 由图像可知，小车在30s内通过的路程为90m。<br>
+                            [2] 由图像可知，小车的s-t图像是一条过原点的斜直线，小车做匀速直线运动，小车在运动过程中，质量和速度都不变，因此动能不变。<br>
+                            [3] 惯性只与物体的质量有关，若小车突然急刹车，小车的质量不变，则它的惯性不变。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第12题</div>
+                    <div class="question-text">
+                        如下图所示的风铃有七根长短不同的小棍，物理王兴趣的同学在敲打小棍时，发现它们发出的声音不同，经研究可得：如表一所示是同一铁棍在不同长度L时敲击的振动频率f₀。<br><br>
+                        <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+                            <tr style="background: #667eea; color: white;">
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">实验序号</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">①</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">②</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">③</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">④</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">⑤</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">L（cm）</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">5</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">10</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">15</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">20</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">25</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">f₀（Hz）</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">700</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">500</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">400</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">300</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">200</td>
+                            </tr>
+                        </table>
+                        （1）判断同一铁棍长度L与音调的关系，并说明理由________。<br>
+                        （2）要用这种材料做一个乐器，发出do re mi fa sol la xi的音时，re的音小于500Hz，请你判断该乐器的长度________10cm（选填"大于"或"等于"或"小于"）。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① L越长音调越低（频率随长度增加而减小，频率小即音调低） ② 大于</div>
+                        <div class="solution">
+                            <strong>解析：</strong>（1）由表格数据可知，当铁棒的长度越长时，振动的频率越低，音调越低；当铁棒的长度越短时，振动的频率越高，音调越高。<br>
+                            （2）由表格数据可知，当铁棒的长度为10cm时，振动的频率为500Hz，当铁棒的长度小于10cm时，振动的频率大于500Hz，音调高于re；当铁棒的长度大于10cm时，振动的频率小于500Hz，音调低于re；所以，要用这种材料做一个乐器，发出do re mi fa sol la xi的音时，re的音小于500Hz，该乐器的长度应大于10cm。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第13题</div>
+                    <div class="question-text">
+                        如下图所示的电路中，在定值电阻R₁或滑动变阻器R₂中，仅有一个发生故障，小浦为研究故障的原因，特地设计了两个方案：<br><br>
+                        方案一：通过移动滑动变阻器的滑片P来判断出故障的原因，写出开关S闭合后，电流表示数变化情况及对应故障_________。<br>
+                        方案二：用一个完好的电阻R₀来替换R₁来判断发生的故障，可选用的电阻R₀的阻值_________。<br>
+                        A. R₀ > R₁ &nbsp;&nbsp;&nbsp; B. R₀ = R₁ &nbsp;&nbsp;&nbsp; C. R₀ < R₁
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 闭合开关后移动滑片，电流表变化，则故障为R₁断路；闭合开关后移动滑片，电流表不变，则故障为R₂断路 ② BC</div>
+                        <div class="solution">
+                            <strong>解析：</strong>[1] 闭合开关后移动滑片，电流表变化，则故障为R₁断路；闭合开关后移动滑片，电流表不变，则故障为R₂断路。<br>
+                            [2] 用一个完好的电阻R₀来替换R₁，如果R₀ > R₁，如果R₀太大，R₁断路时，电流表没有明显变化；所以R₀ <= R₁，如果R₁断路时，电流表会有明显变化，如果R₂断路，电流表没有明显变化。故A不符合题意，BC符合题意。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 三、作图题 -->
+                <div class="section-title">三、作图题（本大题共2题，共4分）</div>
+
+                <div class="question-block">
+                    <div class="question-number">第14题（2分）</div>
+                    <div class="question-text">如图所示，静止的小球所受的重力为10牛，请用力的图示法画出该球所受的重力G。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：见解析</div>
+                        <div class="solution">
+                            <strong>解析：</strong>由题意知道，可画出大小表示5N的标度，通过小球的重心做一条竖直向下的有向线段，使线段长度为标度的2倍，并标明力的大小，即小球所受的重力G的图示。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第15题（2分）</div>
+                    <div class="question-text">根据平面镜成像特点，在图中画出物体AB在平面镜MN中所成的像A′B′。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：见解析</div>
+                        <div class="solution">
+                            <strong>解析：</strong>平面镜成像的特点：平面镜所成的像与物体大小相等，像到平面镜的距离等于物体到平面镜的距离，像与物体的连线与镜面垂直，平面镜所成的像是虚像；故作图时分别过AB作MN的垂线，标出等距离对称的A'B'，因像是虚像，故连接A'B'时用虚线。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 四、综合题 -->
+                <div class="section-title">四、综合题（本大题共5题，共30分）</div>
+
+                <div class="question-block">
+                    <div class="question-number">第16题（6分）</div>
+                    <div class="question-text">在杠杆平衡时，阻力F₂的大小为90N，阻力臂L₂为0.2m，动力臂L₁为0.6m，求动力F₁的大小。</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：30N</div>
+                        <div class="solution">
+                            <strong>解析：</strong>由杠杆平衡条件F₁L₁ = F₂L₂得：<br>
+                            F₁ = F₂L₂/L₁ = (90N × 0.2m) / 0.6m = 30N<br>
+                            答：动力F₁的大小为30N。
+                            <div class="formula">F₁L₁ = F₂L₂</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第17题（6分）</div>
+                    <div class="question-text">质量为2千克的水温度升高50°C。求水吸收的热量Q吸。[c水＝4.2×10³焦/（千克·°C）]</div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：4.2×10⁵焦</div>
+                        <div class="solution">
+                            <strong>解析：</strong>水吸收的热量：<br>
+                            Q吸 = c水mΔt = 4.2×10³J/(kg·°C) × 2kg × 50°C = 4.2×10⁵J<br>
+                            答：水吸收的热量为4.2×10⁵焦。
+                            <div class="formula">Q吸 = c水mΔt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第18题（8分）</div>
+                    <div class="question-text">
+                        如图1所示，将盛有液体的容器甲、乙两容器竖直放在水平面上。甲中液体未知，乙中液体为水，容器的质量和厚度都忽略不计。<br><br>
+                        （1）若甲容器中液体质量为1.2kg，受力面积为1.2×10⁻³m²，求甲容器对地面的压强p甲；<br>
+                        （2）若乙容器中水的质量为1.5kg，求乙中水的体积V水；<br>
+                        （3）如图2所示，若在乙容器中再加入一定水，则此时水的深度为0.2米，将容器乙放进容器甲中，容器甲的液面比容器乙的水面高0.05m。求此时甲容器中液体的密度。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：（1）1×10³Pa；（2）1.5×10⁻³m³；（3）800kg/m³</div>
+                        <div class="solution">
+                            <strong>解析：</strong>（1）容器的质量和厚度都忽略不计，则甲容器中液体的重力G甲 = m液g = 1.2kg × 10N/kg = 12N<br>
+                            甲容器对地面的压力F甲 = G甲 = 12N<br>
+                            甲容器对地面的压强p甲 = F甲/S甲 = 12N / (1.2×10⁻³m²) = 1×10³Pa<br><br>
+                            
+                            （2）乙中水的体积V水 = m水/ρ水 = 1.5kg / (1×10³kg/m³) = 1.5×10⁻³m³<br><br>
+                            
+                            （3）以容器整体为受力分析对象，因为容器的质量和厚度都忽略不计，故G乙 = G水，乙容器在甲中漂浮，故G乙 = F浮 = G排<br>
+                            即ρ液gS(h水+Δh) = ρ水gSh水<br>
+                            ρ液 = ρ水h水/(h水+Δh) = (1.0×10³kg/m³ × 0.2m) / (0.2m + 0.05m) = 800kg/m³<br>
+                            答：（1）甲容器对地面的压强为1×10³Pa；（2）乙中水的体积为1.5×10⁻³m³；（3）此时甲容器中液体的密度为800kg/m³。
+                            <div class="formula">p = F/S<br>V = m/ρ<br>F浮 = ρ液gV排</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第19题（8分）</div>
+                    <div class="question-text">
+                        在下图所示的电路中，电阻R₁的阻值为10Ω，电源电压为15V。<br><br>
+                        （1）①求此时通过电阻R₁的电流I₁。<br>
+                        （2）②把滑动变阻器R₂与电流表（量程为0-0.6A）以某种方式接入电路中，发现电路中最小电功率为27W。<br>
+                        a. 判断电阻R₁与电阻R₂的连接方式，并说明理由。<br>
+                        b. 求电路中滑动变阻器的最大阻值Rmax。<br>
+                        c. 求电路中的最大电功率Pmax。
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① 1.5A；② a. 并联，理由见解析；b. 50Ω；c. 31.5W</div>
+                        <div class="solution">
+                            <strong>解析：</strong>（1）①通过电阻R₁的电流I₁ = U/R₁ = 15V/10Ω = 1.5A<br><br>
+                            
+                            （2）②根据电路中最小电功率有I总min = Pmin/U = 27W/15V = 1.8A > 1.5A，所以连接方式是并联。<br><br>
+                            
+                            ②通过滑动变阻器的最小电流I₂min = I总min - I₁ = 1.8A - 1.5A = 0.3A<br>
+                            滑动变阻器的最大阻值R₂max = U/I₂min = 15V/0.3A = 50Ω<br><br>
+                            
+                            ③通过滑动变阻器的最大电流I₂max = 0.6A<br>
+                            所以干路中的最大电流I总max = I₁ + I₂max = 1.5A + 0.6A = 2.1A<br>
+                            电路中的最大电功率Pmax = UI总max = 15V × 2.1A = 31.5W<br>
+                            答：（1）通过电阻R₁的电流I₁为1.5A；（2）a. 连接方式是并联；b. 滑动变阻器的最大阻值为50Ω；c. 电路中的最大电功率为31.5W。
+                            <div class="formula">I = U/R<br>P = UI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-number">第20题（8分）</div>
+                    <div class="question-text">
+                        物理王兴趣小组的同学小徐和小王做"测定小灯泡的电功率"实验，现有电源（电源电压未知且不变）、滑动变阻器两个分别标有A"5Ω 3A" B"20Ω 2A"字样，待测小灯（标有"2.5V"字样）、电流表、电压表、开关及导线若干。小徐选取其中一个变阻器进行实验，将电流表串联在电路中，将电压表并联在待测小灯泡两端，将滑动变阻器的滑片移至最大阻值处；闭合开关S后，此时电压表如图所示，他发现无法继续实验。小王选取另一个变阻器进行实验，并将电压表并联在电路中某处；移动滑片，进行实验，记录数据如下表，并用其中一组数据成功计算出小灯泡的额定电功率。<br><br>
+                        
+                        <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+                            <tr style="background: #667eea; color: white;">
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">物理量<br>实验序号</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">电压U（伏）</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">电流I（安）</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">3.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.22</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">2.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.28</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">3</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">1.5</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.30</td>
+                            </tr>
+                        </table>
+                        
+                        ①测定小灯泡电功率的实验原理是___________。<br>
+                        ②请通过以上信息判断，小王同学所选滑动变阻器规格为___________，电压表并联在__________两端（选填"电源"或"待测小灯泡"或"滑动变阻器"）。<br>
+                        ③请根据相关信息计算出小灯泡的额定功率P额。（需写出主要推理和计算过程）
+                    </div>
+                    <div class="answer-box">
+                        <div class="answer-title">答案：① P=UI ② A ③ 滑动变阻器 ④ 0.7W</div>
+                        <div class="solution">
+                            <strong>解析：</strong>（1）测定小灯泡电功率的实验原理是P=UI。<br><br>
+                            
+                            （2）根据表格中的数据分析可知：电路中的电流越大，电压表的示数越小，所以电压表并联在滑动变阻器两端。<br>
+                            小徐选取其中一个变阻器进行实验，将电流表串联在电路中，将电压表并联在待测小灯泡两端，将滑动变阻器的滑片移至最大阻值处；闭合开关S后，此时电压表如图所示，他发现无法继续实验。小徐将滑动变阻器的滑片移至最大阻值处，此时电压表如图所示U灯=3V，由小王的序号3数据可知，U滑=1.5V，I=0.3A时，小王电路中R滑 = U/I = 1.5V/0.3A = 5Ω，所以小王同学所选滑动变阻器应该选择A。<br><br>
+                            
+                            （3）因为小徐电路将滑片移至阻值最大处，所以R滑1=5Ω，U灯=3V，由小王的序号3数据可知，U滑=1.5V，I=0.3A时，小王电路中R滑2 = U/I = 1.5V/0.3A = 5Ω = R滑1，所以小徐电路图和小王3号电路图一致，电源电压U总 = U灯 + UR滑2 = 3V + 1.5V = 4.5V<br>
+                            由2号数据知U滑=2V时，U灯 = U总 - U滑 = 4.5V - 2V = 2.5V = U额<br>
+                            所以小灯泡的额定功率为P额 = U额I额 = 2.5V × 0.28A = 0.7W
+                            <div class="formula">P = UI<br>R = U/I</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="encouragement-box" style="margin-top: 30px;">
+                    <h3>🎯 顾书侨，加油！</h3>
+                    <p>天道酬勤，功不唐捐！<br>
+                    你的每一分努力，都会在考场上绽放光芒！<br>
+                    相信自己，全力以赴，中考必胜！💪✨</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 顾书侨的中考物理复习资料 | 仅供个人学习使用</p>
+            <p style="margin-top: 10px; font-size: 1.2em; color: #667eea;">
+                🎓 祝中考顺利，金榜题名！
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleYear(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.classList.remove('rotate');
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                icon.classList.add('rotate');
+                icon.textContent = '▲';
+            }
+        }
+    </script>
+</body>
+</html>
