@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海物理中考题目整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e9ecef;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+            font-size: 1em;
+            font-weight: bold;
+            color: #6c757d;
+            min-width: 120px;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .topic-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .formula-box {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+
+        .example {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .example h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .key-points {
+            background: #e7f3ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .key-points h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 3px solid #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .nav-tab {
+                font-size: 0.9em;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 上海物理中考题目整理</h1>
+            <p>核心考点 · 重要公式 · 典型例题</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('mechanics')">力学</button>
+            <button class="nav-tab" onclick="showSection('thermal')">热学</button>
+            <button class="nav-tab" onclick="showSection('optics')">光学</button>
+            <button class="nav-tab" onclick="showSection('electricity')">电学</button>
+            <button class="nav-tab" onclick="showSection('energy')">能量</button>
+        </nav>
+
+        <div class="content">
+            <!-- 力学部分 -->
+            <div id="mechanics" class="section active">
+                <div class="topic-card">
+                    <h3>1. 运动和力</h3>
+                    
+                    <div class="key-points">
+                        <h4>核心知识点</h4>
+                        <ul>
+                            <li>速度公式：v = s/t</li>
+                            <li>牛顿第一定律（惯性定律）</li>
+                            <li>二力平衡条件</li>
+                            <li>摩擦力的大小与方向</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-box">
+                        <strong>速度公式：</strong>v = s / t<br>
+                        <strong>单位换算：</strong>1 m/s = 3.6 km/h
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 典型例题</h4>
+                        <p>一辆汽车以20m/s的速度匀速行驶，经过5s后通过的路程是多少？</p>
+                        <button class="btn" onclick="toggleAnswer(this)">查看答案</button>
+                        <div class="answer">
+                            <strong>解：</strong><br>
+                            已知：v = 20 m/s，t = 5 s<br>
+                            由 v = s/t 得：<br>
+                            s = v × t = 20 × 5 = <span class="highlight">100 m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>2. 压强</h3>
+                    
+                    <div class="formula-box">
+                        <strong>压强公式：</strong>p = F / S<br>
+                        <strong>液体压强：</strong>p = ρgh<br>
+                        <strong>单位：</strong>1 Pa = 1 N/m²
+                    </div>
+
+                    <div class="key-points">
+                        <h4>注意事项</h4>
+                        <ul>
+                            <li>固体压强：先求压力F，再求压强p</li>
+                            <li>液体压强：先用p=ρgh求压强，再用F=pS求压力</li>
+                            <li>受力面积S是接触面积，不是物体表面积</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 典型例题</h4>
+                        <p>一个质量为60kg的人站立时，双脚与地面的接触面积为400cm²，求人对地面的压强。（g=10N/kg）</p>
+                        <button class="btn" onclick="toggleAnswer(this)">查看答案</button>
+                        <div class="answer">
+                            <strong>解：</strong><br>
+                            人的重力：G = mg = 60 × 10 = 600 N<br>
+                            人对地面的压力：F = G = 600 N<br>
+                            受力面积：S = 400 cm² = 0.04 m²<br>
+                            压强：p = F/S = 600/0.04 = <span class="highlight">15000 Pa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>3. 浮力</h3>
+                    
+                    <div class="formula-box">
+                        <strong>阿基米德原理：</strong>F浮 = ρ液gV排<br>
+                        <strong>称重法：</strong>F浮 = G - F示<br>
+                        <strong>漂浮条件：</strong>F浮 = G物
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>物体状态</th>
+                            <th>浮力与重力关系</th>
+                            <th>密度关系</th>
+                        </tr>
+                        <tr>
+                            <td>漂浮</td>
+                            <td>F浮 = G</td>
+                            <td>ρ物 < ρ液</td>
+                        </tr>
+                        <tr>
+                            <td>悬浮</td>
+                            <td>F浮 = G</td>
+                            <td>ρ物 = ρ液</td>
+                        </tr>
+                        <tr>
+                            <td>下沉</td>
+                            <td>F浮 < G</td>
+                            <td>ρ物 > ρ液</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="topic-card">
+                    <h3>4. 简单机械</h3>
+                    
+                    <div class="formula-box">
+                        <strong>杠杆平衡条件：</strong>F₁L₁ = F₂L₂<br>
+                        <strong>滑轮组：</strong>F = (G物 + G动) / n<br>
+                        <strong>机械效率：</strong>η = W有 / W总 × 100%
+                    </div>
+
+                    <div class="key-points">
+                        <h4>滑轮组要点</h4>
+                        <ul>
+                            <li>n为承担物重的绳子段数</li>
+                            <li>s = nh（绳子自由端移动距离）</li>
+                            <li>v绳 = nv物（绳子自由端速度）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 热学部分 -->
+            <div id="thermal" class="section">
+                <div class="topic-card">
+                    <h3>1. 温度与热量</h3>
+                    
+                    <div class="formula-box">
+                        <strong>吸热公式：</strong>Q吸 = cm(t - t₀)<br>
+                        <strong>放热公式：</strong>Q放 = cm(t₀ - t)<br>
+                        <strong>燃料燃烧：</strong>Q = mq 或 Q = Vq
+                    </div>
+
+                    <div class="key-points">
+                        <h4>比热容</h4>
+                        <ul>
+                            <li>水的比热容：c水 = 4.2×10³ J/(kg·℃)</li>
+                            <li>比热容是物质的特性，与质量、温度变化无关</li>
+                            <li>水的比热容大，常用于冷却剂和取暖介质</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 典型例题</h4>
+                        <p>将2kg的水从20℃加热到70℃，需要吸收多少热量？</p>
+                        <button class="btn" onclick="toggleAnswer(this)">查看答案</button>
+                        <div class="answer">
+                            <strong>解：</strong><br>
+                            Q吸 = cm(t - t₀)<br>
+                            = 4.2×10³ × 2 × (70 - 20)<br>
+                            = 4.2×10³ × 2 × 50<br>
+                            = <span class="highlight">4.2×10⁵ J</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>2. 物态变化</h3>
+                    
+                    <table>
+                        <tr>
+                            <th>变化名称</th>
+                            <th>过程</th>
+                            <th>吸/放热</th>
+                            <th>实例</th>
+                        </tr>
+                        <tr>
+                            <td>熔化</td>
+                            <td>固→液</td>
+                            <td>吸热</td>
+                            <td>冰化成水</td>
+                        </tr>
+                        <tr>
+                            <td>凝固</td>
+                            <td>液→固</td>
+                            <td>放热</td>
+                            <td>水结成冰</td>
+                        </tr>
+                        <tr>
+                            <td>汽化</td>
+                            <td>液→气</td>
+                            <td>吸热</td>
+                            <td>水蒸发</td>
+                        </tr>
+                        <tr>
+                            <td>液化</td>
+                            <td>气→液</td>
+                            <td>放热</td>
+                            <td>露水形成</td>
+                        </tr>
+                        <tr>
+                            <td>升华</td>
+                            <td>固→气</td>
+                            <td>吸热</td>
+                            <td>干冰升华</td>
+                        </tr>
+                        <tr>
+                            <td>凝华</td>
+                            <td>气→固</td>
+                            <td>放热</td>
+                            <td>霜的形成</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="topic-card">
+                    <h3>3. 内能与热机</h3>
+                    
+                    <div class="key-points">
+                        <h4>改变内能的方式</h4>
+                        <ul>
+                            <li>做功：机械能 ↔ 内能（如摩擦生热）</li>
+                            <li>热传递：内能的转移（如加热物体）</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-box">
+                        <strong>热机效率：</strong>η = W有 / Q放 × 100%<br>
+                        <strong>四冲程汽油机：</strong>吸气→压缩→做功→排气
+                    </div>
+                </div>
+            </div>
+
+            <!-- 光学部分 -->
+            <div id="optics" class="section">
+                <div class="topic-card">
+                    <h3>1. 光的直线传播</h3>
+                    
+                    <div class="key-points">
+                        <h4>现象与应用</h4>
+                        <ul>
+                            <li>影子的形成</li>
+                            <li>日食、月食</li>
+                            <li>小孔成像（倒立实像）</li>
+                            <li>激光准直</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-box">
+                        <strong>光速：</strong>c = 3×10⁸ m/s（真空中）<br>
+                        <strong>光年：</strong>长度单位，光在一年中传播的距离
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>2. 光的反射</h3>
+                    
+                    <div class="key-points">
+                        <h4>反射定律</h4>
+                        <ul>
+                            <li>反射光线、入射光线、法线在同一平面内</li>
+                            <li>反射光线和入射光线分居法线两侧</li>
+                            <li>反射角 = 入射角</li>
+                        </ul>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>类型</th>
+                            <th>特点</th>
+                            <th>应用</th>
+                        </tr>
+                        <tr>
+                            <td>镜面反射</td>
+                            <td>平行光反射后仍平行</td>
+                            <td>平面镜、水面</td>
+                        </tr>
+                        <tr>
+                            <td>漫反射</td>
+                            <td>平行光反射后向各个方向</td>
+                            <td>能从各方向看到物体</td>
+                        </tr>
+                    </table>
+
+                    <div class="formula-box">
+                        <strong>平面镜成像特点：</strong><br>
+                        • 像与物大小相等<br>
+                        • 像与物到镜面距离相等<br>
+                        • 像与物的连线与镜面垂直<br>
+                        • 成虚像
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>3. 光的折射</h3>
+                    
+                    <div class="key-points">
+                        <h4>折射规律</h4>
+                        <ul>
+                            <li>光从空气斜射入水中：折射角 < 入射角</li>
+                            <li>光从水斜射入空气中：折射角 > 入射角</li>
+                            <li>垂直入射时，传播方向不变</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 常见现象</h4>
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>筷子在水中"弯折"</li>
+                            <li>池水看起来变浅</li>
+                            <li>海市蜃楼</li>
+                            <li>彩虹的形成</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>4. 透镜及其应用</h3>
+                    
+                    <table>
+                        <tr>
+                            <th>透镜类型</th>
+                            <th>对光线作用</th>
+                            <th>应用</th>
+                        </tr>
+                        <tr>
+                            <td>凸透镜</td>
+                            <td>会聚</td>
+                            <td>放大镜、照相机、投影仪</td>
+                        </tr>
+                        <tr>
+                            <td>凹透镜</td>
+                            <td>发散</td>
+                            <td>近视眼镜</td>
+                        </tr>
+                    </table>
+
+                    <div class="formula-box">
+                        <strong>凸透镜成像规律：</strong><br>
+                        u > 2f：倒立缩小实像（照相机）<br>
+                        f < u < 2f：倒立放大实像（投影仪）<br>
+                        u < f：正立放大虚像（放大镜）
+                    </div>
+                </div>
+            </div>
+
+            <!-- 电学部分 -->
+            <div id="electricity" class="section">
+                <div class="topic-card">
+                    <h3>1. 电流、电压、电阻</h3>
+                    
+                    <div class="formula-box">
+                        <strong>欧姆定律：</strong>I = U / R<br>
+                        <strong>变形公式：</strong>U = IR，R = U/I
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>物理量</th>
+                            <th>符号</th>
+                            <th>单位</th>
+                            <th>测量工具</th>
+                        </tr>
+                        <tr>
+                            <td>电流</td>
+                            <td>I</td>
+                            <td>安培(A)</td>
+                            <td>电流表（串联）</td>
+                        </tr>
+                        <tr>
+                            <td>电压</td>
+                            <td>U</td>
+                            <td>伏特(V)</td>
+                            <td>电压表（并联）</td>
+                        </tr>
+                        <tr>
+                            <td>电阻</td>
+                            <td>R</td>
+                            <td>欧姆(Ω)</td>
+                            <td>欧姆表/伏安法</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-points">
+                        <h4>串并联电路特点</h4>
+                        <ul>
+                            <li><strong>串联：</strong>I处处相等，U总=U₁+U₂，R总=R₁+R₂</li>
+                            <li><strong>并联：</strong>U处处相等，I总=I₁+I₂，1/R总=1/R₁+1/R₂</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>2. 电功与电功率</h3>
+                    
+                    <div class="formula-box">
+                        <strong>电功：</strong>W = UIt = Pt<br>
+                        <strong>电功率：</strong>P = UI = W/t = I²R = U²/R<br>
+                        <strong>单位：</strong>1 kW·h = 3.6×10⁶ J
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 典型例题</h4>
+                        <p>一只标有"220V 100W"的灯泡正常工作时的电流和电阻是多少？</p>
+                        <button class="btn" onclick="toggleAnswer(this)">查看答案</button>
+                        <div class="answer">
+                            <strong>解：</strong><br>
+                            由 P = UI 得：<br>
+                            I = P/U = 100/220 ≈ <span class="highlight">0.45 A</span><br><br>
+                            由 P = U²/R 得：<br>
+                            R = U²/P = 220²/100 = <span class="highlight">484 Ω</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>3. 焦耳定律</h3>
+                    
+                    <div class="formula-box">
+                        <strong>焦耳定律：</strong>Q = I²Rt<br>
+                        （适用于所有电路的电热计算）
+                    </div>
+
+                    <div class="key-points">
+                        <h4>纯电阻电路</h4>
+                        <ul>
+                            <li>电能全部转化为内能：W = Q</li>
+                            <li>可用公式：Q = I²Rt = UIt = U²t/R</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 典型例题</h4>
+                        <p>一根电阻丝阻值为10Ω，通过的电流为2A，通电5min产生的热量是多少？</p>
+                        <button class="btn" onclick="toggleAnswer(this)">查看答案</button>
+                        <div class="answer">
+                            <strong>解：</strong><br>
+                            t = 5 min = 300 s<br>
+                            Q = I²Rt = 2² × 10 × 300 = <span class="highlight">12000 J</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>4. 家庭电路与安全用电</h3>
+                    
+                    <div class="key-points">
+                        <h4>安全用电原则</h4>
+                        <ul>
+                            <li>不接触低压带电体，不靠近高压带电体</li>
+                            <li>更换灯泡、搬动电器前应断开电源开关</li>
+                            <li>保险丝熔断后不能用铜丝、铁丝代替</li>
+                            <li>有金属外壳的用电器要接地线</li>
+                        </ul>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>组成部分</th>
+                            <th>作用</th>
+                        </tr>
+                        <tr>
+                            <td>电能表</td>
+                            <td>测量消耗的电能</td>
+                        </tr>
+                        <tr>
+                            <td>总开关</td>
+                            <td>控制整个电路的通断</td>
+                        </tr>
+                        <tr>
+                            <td>保险丝/空气开关</td>
+                            <td>电流过大时自动切断电路</td>
+                        </tr>
+                        <tr>
+                            <td>插座</td>
+                            <td>左零右火上接地</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 能量部分 -->
+            <div id="energy" class="section">
+                <div class="topic-card">
+                    <h3>1. 机械能</h3>
+                    
+                    <div class="formula-box">
+                        <strong>动能：</strong>Eₖ = ½mv²<br>
+                        <strong>重力势能：</strong>Eₚ = mgh<br>
+                        <strong>机械能：</strong>E = Eₖ + Eₚ
+                    </div>
+
+                    <div class="key-points">
+                        <h4>影响因素</h4>
+                        <ul>
+                            <li><strong>动能：</strong>与质量和速度有关（速度影响更大）</li>
+                            <li><strong>重力势能：</strong>与质量和高度有关</li>
+                            <li><strong>弹性势能：</strong>与弹性形变程度有关</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 能量转化实例</h4>
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>滚摆：动能 ↔ 重力势能</li>
+                            <li>弹簧振子：动能 ↔ 弹性势能</li>
+                            <li>卫星绕地球：近地点动能大，远地点势能大</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>2. 功和功率</h3>
+                    
+                    <div class="formula-box">
+                        <strong>功：</strong>W = Fs（力和位移方向一致）<br>
+                        <strong>功率：</strong>P = W/t = Fv<br>
+                        <strong>单位：</strong>1 W = 1 J/s
+                    </div>
+
+                    <div class="key-points">
+                        <h4>做功的两个必要因素</h4>
+                        <ul>
+                            <li>作用在物体上的力</li>
+                            <li>物体在力的方向上通过的距离</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <h4>📝 不做功的情况</h4>
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>有力无距离（推墙不动）</li>
+                            <li>有距离无力（惯性运动）</li>
+                            <li>力与距离垂直（水平运动时重力不做功）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>3. 能量守恒定律</h3>
+                    
+                    <div class="key-points">
+                        <h4>核心内容</h4>
+                        <ul>
+                            <li>能量既不会凭空产生，也不会凭空消失</li>
+                            <li>它只会从一种形式转化为另一种形式</li>
+                            <li>或者从一个物体转移到另一个物体</li>
+                            <li>在转化和转移过程中，能量的总量保持不变</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-box">
+                        <strong>能量守恒表达式：</strong><br>
+                        E初 = E末<br>
+                        或 ΔE增 = ΔE减
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>💡 提示：点击"查看答案"按钮可查看解题过程 | 祝中考顺利！</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2024 上海物理中考复习资料</p>
+        </footer>
+    </div>
+
+    <script>
+        // 切换显示不同章节
+        function showSection(sectionId) {
+            // 隐藏所有章节
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有tab的active类
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的章节
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 激活对应的tab
+            event.target.classList.add('active');
+        }
+
+        // 切换答案显示
+        function toggleAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                btn.textContent = '查看答案';
+            } else {
+                answer.classList.add('show');
+                btn.textContent = '隐藏答案';
+            }
+        }
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const activeTab = document.querySelector('.nav-tab.active');
+            const currentIndex = Array.from(tabs).indexOf(activeTab);
+            
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                tabs[currentIndex - 1].click();
+            } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+                tabs[currentIndex + 1].click();
+            }
+        });
+    </script>
+</body>
+</html>
