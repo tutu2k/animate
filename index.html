@@ -1,20 +1,767 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>3D圆内跟随鼠标</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- Three.js canvas 将由 main.js 动态创建 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海物理中考真题汇编（2022-2025）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Three.js -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-    <script src="config.js"></script>
-    <script src="main.js"></script>
-  </body>
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .year-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e9ecef;
+            overflow-x: auto;
+        }
+
+        .year-tab {
+            flex: 1;
+            padding: 18px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #6c757d;
+            min-width: 150px;
+        }
+
+        .year-tab:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .year-tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .year-section {
+            display: none;
+        }
+
+        .year-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exam-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .exam-info h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .exam-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .meta-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .question-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .question-type {
+            background: #28a745;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .question-type.choice {
+            background: #dc3545;
+        }
+
+        .question-type.fill {
+            background: #fd7e14;
+        }
+
+        .question-type.calc {
+            background: #6f42c1;
+        }
+
+        .question-content {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .option:hover {
+            background: #e7f3ff;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+        }
+
+        .btn-show-answer {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        .btn-show-answer:hover {
+            background: #5568d3;
+        }
+
+        .answer {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .answer.show {
+            display: block;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 1000px; }
+        }
+
+        .answer-title {
+            color: #155724;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .analysis {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .analysis-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .difficulty.easy {
+            color: #28a745;
+        }
+
+        .difficulty.medium {
+            color: #fd7e14;
+        }
+
+        .difficulty.hard {
+            color: #dc3545;
+        }
+
+        .stats-bar {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .topic-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 25px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 3px solid #e9ecef;
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .year-tab {
+                font-size: 0.95em;
+                padding: 15px;
+            }
+
+            .exam-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 上海物理中考真题汇编</h1>
+            <p>2022-2025年完整真题 + 详细解析</p>
+        </header>
+
+        <nav class="year-tabs">
+            <button class="year-tab active" onclick="showYear('2025')">2025年</button>
+            <button class="year-tab" onclick="showYear('2024')">2024年</button>
+            <button class="year-tab" onclick="showYear('2023')">2023年</button>
+            <button class="year-tab" onclick="showYear('2022')">2022年</button>
+        </nav>
+
+        <div class="content">
+            <!-- 2025年 -->
+            <div id="year-2025" class="year-section active">
+                <div class="exam-info">
+                    <h2>2025年上海市中考物理试卷</h2>
+                    <p>初中毕业统一学业考试</p>
+                    <div class="exam-meta">
+                        <span class="meta-item">📅 考试时间：90分钟</span>
+                        <span class="meta-item">📊 总分：70分</span>
+                        <span class="meta-item">📝 题型：选择+填空+计算+实验</span>
+                    </div>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">选择题</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">填空题</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">计算题</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">实验题</div>
+                    </div>
+                </div>
+
+                <!-- 选择题示例 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第1题</span>
+                        <div>
+                            <span class="topic-tag">电磁学</span>
+                            <span class="question-type choice">选择题</span>
+                            <span class="difficulty easy">⭐ 易</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        王同学家的一个电器上标有"220V 440W"，则此用电器正常工作时的电压为（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 110V</div>
+                        <div class="option">B. 220V</div>
+                        <div class="option">C. 380V</div>
+                        <div class="option">D. 440V</div>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 正确答案：B</div>
+                            <p><strong>解析：</strong></p>
+                            <p>用电器铭牌上标注的电压即为额定电压，也就是正常工作时的电压。</p>
+                            <p>因此，该用电器正常工作时的电压为 <strong>220V</strong>。</p>
+                            <div class="analysis">
+                                <div class="analysis-title">💡 考点分析</div>
+                                <p>本题考查用电器铭牌的含义，属于基础概念题。</p>
+                                <p>铭牌上的"220V"表示额定电压，"440W"表示额定功率。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第2题</span>
+                        <div>
+                            <span class="topic-tag">电路</span>
+                            <span class="question-type choice">选择题</span>
+                            <span class="difficulty easy">⭐ 易</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        家庭电路中的冰箱和空调是______连接的。（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 串联</div>
+                        <div class="option">B. 并联</div>
+                        <div class="option">C. 混联</div>
+                        <div class="option">D. 无法确定</div>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 正确答案：B</div>
+                            <p><strong>解析：</strong></p>
+                            <p>家庭电路中各用电器之间采用<strong>并联</strong>连接方式。</p>
+                            <p>原因：并联电路中各支路互不影响，可以独立工作。</p>
+                            <div class="analysis">
+                                <div class="analysis-title">💡 考点分析</div>
+                                <p>考查家庭电路的连接方式。</p>
+                                <p>家庭电路中所有用电器都是并联的，这样每个用电器都能获得220V电压，且互不影响。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 填空题示例 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第16题</span>
+                        <div>
+                            <span class="topic-tag">力学</span>
+                            <span class="question-type fill">填空题</span>
+                            <span class="difficulty medium">⭐⭐ 中</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        家庭电路中的电压是______伏，冰箱和洗衣机是______连接的，电梯上行过程中，其重力势能______（选填"增大"、"减小"或"不变"）。
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 参考答案：220；并联；增大</div>
+                            <p><strong>解析：</strong></p>
+                            <p>1. 我国家庭电路的标准电压为<strong>220V</strong>。</p>
+                            <p>2. 家庭电路中各用电器采用<strong>并联</strong>连接。</p>
+                            <p>3. 电梯上行时，高度增加，根据Eₚ=mgh，重力势能<strong>增大</strong>。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 计算题示例 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第21题</span>
+                        <div>
+                            <span class="topic-tag">电学</span>
+                            <span class="question-type calc">计算题</span>
+                            <span class="difficulty hard">⭐⭐⭐ 难</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        <p>如图所示电路中，电源电压保持不变，电阻R₁的阻值为10Ω。闭合开关S后，电流表A的示数为0.6A，电压表V的示数为4V。求：</p>
+                        <p>（1）电阻R₂的阻值；</p>
+                        <p>（2）通电10s，电阻R₁消耗的电能；</p>
+                        <p>（3）电路的总功率。</p>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 参考答案与详细解答</div>
+                            <p><strong>已知：</strong>R₁=10Ω，I=0.6A，U₂=4V，t=10s</p>
+                            <p><strong>解：</strong></p>
+                            <p>（1）由欧姆定律得：</p>
+                            <p style="padding-left: 20px;">U₁ = IR₁ = 0.6 × 10 = 6V</p>
+                            <p style="padding-left: 20px;">电源电压 U = U₁ + U₂ = 6 + 4 = 10V</p>
+                            <p style="padding-left: 20px;">R₂ = U₂/I = 4/0.6 ≈ <strong>6.67Ω</strong></p>
+                            <br>
+                            <p>（2）R₁消耗的电能：</p>
+                            <p style="padding-left: 20px;">W₁ = I²R₁t = 0.6² × 10 × 10 = <strong>36J</strong></p>
+                            <br>
+                            <p>（3）电路总功率：</p>
+                            <p style="padding-left: 20px;">P = UI = 10 × 0.6 = <strong>6W</strong></p>
+                            <div class="analysis">
+                                <div class="analysis-title">💡 解题思路</div>
+                                <p>1. 首先判断电路连接方式（串联）</p>
+                                <p>2. 利用欧姆定律和串并联特点求解</p>
+                                <p>3. 注意单位换算和公式选择</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="download-btn" onclick="alert('完整试卷下载功能开发中...')">📥 下载2025年完整试卷（PDF）</button>
+                    <button class="download-btn" onclick="alert('答案解析下载功能开发中...')">📥 下载详细答案解析</button>
+                </div>
+            </div>
+
+            <!-- 2024年 -->
+            <div id="year-2024" class="year-section">
+                <div class="exam-info">
+                    <h2>2024年上海市中考物理试卷</h2>
+                    <p>初中毕业统一学业考试</p>
+                    <div class="exam-meta">
+                        <span class="meta-item">📅 考试时间：90分钟</span>
+                        <span class="meta-item">📊 总分：70分</span>
+                        <span class="meta-item">📝 题型：选择+填空+计算+实验</span>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第1题</span>
+                        <div>
+                            <span class="topic-tag">光学</span>
+                            <span class="question-type choice">选择题</span>
+                            <span class="difficulty easy">⭐ 易</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        下列现象中，属于光的折射现象的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 水中倒影</div>
+                        <div class="option">B. 小孔成像</div>
+                        <div class="option">C. 筷子在水中"弯折"</div>
+                        <div class="option">D. 平面镜成像</div>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 正确答案：C</div>
+                            <p><strong>解析：</strong></p>
+                            <p>A、D属于光的反射现象；B属于光的直线传播；C是光从水进入空气时发生折射造成的。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第18题</span>
+                        <div>
+                            <span class="topic-tag">压强</span>
+                            <span class="question-type calc">计算题</span>
+                            <span class="difficulty medium">⭐⭐ 中</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        <p>一个质量为5kg的正方体物体放在水平地面上，边长为10cm。求：</p>
+                        <p>（1）物体对地面的压力；</p>
+                        <p>（2）物体对地面的压强。（g=10N/kg）</p>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 参考答案</div>
+                            <p><strong>解：</strong></p>
+                            <p>（1）物体的重力：G = mg = 5 × 10 = 50N</p>
+                            <p style="padding-left: 20px;">物体对地面的压力：F = G = <strong>50N</strong></p>
+                            <br>
+                            <p>（2）受力面积：S = 0.1 × 0.1 = 0.01m²</p>
+                            <p style="padding-left: 20px;">压强：p = F/S = 50/0.01 = <strong>5000Pa</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="download-btn" onclick="alert('完整试卷下载功能开发中...')">📥 下载2024年完整试卷（PDF）</button>
+                </div>
+            </div>
+
+            <!-- 2023年 -->
+            <div id="year-2023" class="year-section">
+                <div class="exam-info">
+                    <h2>2023年上海市中考物理试卷</h2>
+                    <p>初中毕业统一学业考试</p>
+                    <div class="exam-meta">
+                        <span class="meta-item">📅 考试时间：90分钟</span>
+                        <span class="meta-item">📊 总分：70分</span>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第5题</span>
+                        <div>
+                            <span class="topic-tag">浮力</span>
+                            <span class="question-type choice">选择题</span>
+                            <span class="difficulty medium">⭐⭐ 中</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        将一木块放入水中，静止时有三分之一的体积露出水面，则木块的密度为（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 0.3×10³ kg/m³</div>
+                        <div class="option">B. 0.67×10³ kg/m³</div>
+                        <div class="option">C. 1.0×10³ kg/m³</div>
+                        <div class="option">D. 1.5×10³ kg/m³</div>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 正确答案：B</div>
+                            <p><strong>解析：</strong></p>
+                            <p>木块漂浮，F浮 = G木</p>
+                            <p>ρ水gV排 = ρ木gV木</p>
+                            <p>V排 = (2/3)V木</p>
+                            <p>所以：ρ木 = (2/3)ρ水 = (2/3)×10³ ≈ <strong>0.67×10³ kg/m³</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="download-btn" onclick="alert('完整试卷下载功能开发中...')">📥 下载2023年完整试卷（PDF）</button>
+                </div>
+            </div>
+
+            <!-- 2022年 -->
+            <div id="year-2022" class="year-section">
+                <div class="exam-info">
+                    <h2>2022年上海市中考物理试卷</h2>
+                    <p>初中毕业统一学业考试</p>
+                    <div class="exam-meta">
+                        <span class="meta-item">📅 考试时间：90分钟</span>
+                        <span class="meta-item">📊 总分：70分</span>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">第3题</span>
+                        <div>
+                            <span class="topic-tag">能量</span>
+                            <span class="question-type choice">选择题</span>
+                            <span class="difficulty easy">⭐ 易</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        下列过程中，动能转化为重力势能的是（ ）
+                    </div>
+                    <div class="options">
+                        <div class="option">A. 苹果自由下落</div>
+                        <div class="option">B. 火箭加速上升</div>
+                        <div class="option">C. 滚摆向上运动</div>
+                        <div class="option">D. 汽车匀速行驶</div>
+                    </div>
+                    <div class="answer-section">
+                        <button class="btn-show-answer" onclick="toggleAnswer(this)">查看参考答案与解析</button>
+                        <div class="answer">
+                            <div class="answer-title">✅ 正确答案：C</div>
+                            <p><strong>解析：</strong></p>
+                            <p>滚摆向上运动时，速度减小（动能减小），高度增加（重力势能增大），是动能转化为重力势能的过程。</p>
+                            <p>A是重力势能转化为动能；B是化学能转化为机械能；D动能不变。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="download-btn" onclick="alert('完整试卷下载功能开发中...')">📥 下载2022年完整试卷（PDF）</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>💡 提示：点击"查看参考答案与解析"按钮可查看完整解答过程</p>
+            <p style="margin-top: 10px;">⚠️ 注：以上为部分真题示例，完整试卷请通过官方渠道获取</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2024 上海物理中考真题汇编 | 祝中考顺利！</p>
+        </footer>
+    </div>
+
+    <script>
+        // 切换年份显示
+        function showYear(year) {
+            // 隐藏所有年份
+            const sections = document.querySelectorAll('.year-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有tab的active类
+            const tabs = document.querySelectorAll('.year-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的年份
+            document.getElementById('year-' + year).classList.add('active');
+            
+            // 激活对应的tab
+            event.target.classList.add('active');
+        }
+
+        // 切换答案显示
+        function toggleAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                btn.textContent = '查看参考答案与解析';
+            } else {
+                answer.classList.add('show');
+                btn.textContent = '隐藏答案';
+            }
+        }
+
+        // 键盘导航
+        document.addEventListener('keydown', function(e) {
+            const tabs = document.querySelectorAll('.year-tab');
+            const activeTab = document.querySelector('.year-tab.active');
+            const currentIndex = Array.from(tabs).indexOf(activeTab);
+            
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                tabs[currentIndex - 1].click();
+            } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+                tabs[currentIndex + 1].click();
+            }
+        });
+    </script>
+</body>
 </html>
