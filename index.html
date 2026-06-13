@@ -102,11 +102,90 @@
 
         .options {
             margin: 10px 0;
-            padding-left: 20px;
+            padding-left: 0;
         }
 
-        .options div {
+        .option-item {
+            margin: 8px 0;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-item:hover {
+            background: #e7f3ff;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option-item.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option-item.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option-item.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 30px;
+        }
+
+        .fill-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
             margin: 5px 0;
+            transition: border-color 0.3s;
+        }
+
+        .fill-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .fill-input.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+
+        .fill-input.wrong {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+
+        .btn-check-answer {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-check-answer:hover {
+            background: #5568d3;
         }
 
         .answer-box {
@@ -115,6 +194,17 @@
             padding: 15px;
             margin-top: 15px;
             border-radius: 5px;
+            display: none;
+        }
+
+        .answer-box.show {
+            display: block;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 1000px; }
         }
 
         .answer-title {
@@ -236,15 +326,28 @@
                 <!-- 一、选择题 -->
                 <div class="section-title">一、选择题（本大题共6题，每题2分，共12分）</div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="C">
                     <div class="question-number">第1题（2分）</div>
                     <div class="question-text">一个中学生身体的质量最接近的是（ ）</div>
                     <div class="options">
-                        <div>A. 0.5kg</div>
-                        <div>B. 5kg</div>
-                        <div>C. 50kg</div>
-                        <div>D. 500kg</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>0.5kg</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>5kg</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>50kg</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>500kg</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：C</div>
                         <div class="solution">
@@ -253,15 +356,28 @@
                     </div>
                 </div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="A">
                     <div class="question-number">第2题（2分）</div>
                     <div class="question-text">在一个氧原子中，带负电的粒子是（ ）</div>
                     <div class="options">
-                        <div>A. 电子</div>
-                        <div>B. 氧原子</div>
-                        <div>C. 质子</div>
-                        <div>D. 中子</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>电子</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>氧原子</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>质子</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>中子</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：A</div>
                         <div class="solution">
@@ -270,15 +386,28 @@
                     </div>
                 </div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="B">
                     <div class="question-number">第3题（2分）</div>
                     <div class="question-text">有一束光从空气中斜射入平静的水面时，若入射角为60°，则折射角为（ ）</div>
                     <div class="options">
-                        <div>A. 0°</div>
-                        <div>B. 40°</div>
-                        <div>C. 60°</div>
-                        <div>D. 90°</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>0°</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>40°</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>60°</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>90°</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：B</div>
                         <div class="solution">
@@ -287,15 +416,28 @@
                     </div>
                 </div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="D">
                     <div class="question-number">第4题（2分）</div>
                     <div class="question-text">物理王坐电梯回家时，电梯匀速上升。若他对电梯的压力为F₁，电梯对他的支持力为F₂，他受到的重力为G，则下列判断中正确的是（ ）</div>
                     <div class="options">
-                        <div>A. F₁ > G</div>
-                        <div>B. F₂ > G</div>
-                        <div>C. F₁和F₂是平衡力</div>
-                        <div>D. F₂和G是平衡力</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>F₁ > G</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>F₂ > G</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>F₁和F₂是平衡力</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>F₂和G是平衡力</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：D</div>
                         <div class="solution">
@@ -304,15 +446,28 @@
                     </div>
                 </div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="D">
                     <div class="question-number">第5题（2分）</div>
                     <div class="question-text">如图所示是电烙铁工作的原理图。它正常工作时，两端的电压为220伏。在预热状态时，通过它的电流较小；在加热状态时，通过它的电流较大，则下列选项中正确的是（ ）</div>
                     <div class="options">
-                        <div>A. 闭合开关S，此时小灯熄灭，处于预热状态</div>
-                        <div>B. 断开开关S，此时小灯发光，处于加热状态</div>
-                        <div>C. 闭合开关S，此时小灯发光，处于预热状态</div>
-                        <div>D. 闭合开关S，此时小灯熄灭，处于加热状态</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>闭合开关S，此时小灯熄灭，处于预热状态</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>断开开关S，此时小灯发光，处于加热状态</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>闭合开关S，此时小灯发光，处于预热状态</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>闭合开关S，此时小灯熄灭，处于加热状态</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：D</div>
                         <div class="solution">
@@ -322,15 +477,28 @@
                     </div>
                 </div>
 
-                <div class="question-block">
+                <div class="question-block" data-correct="B">
                     <div class="question-number">第6题（2分）</div>
                     <div class="question-text">光具座上有凸透镜、光屏及发光源各一个。当光屏和凸透镜的距离为10cm时，此时在光屏上成缩小的像。物理王把光屏沿着光具座移动5cm后，再次移动光源的位置使成清晰的像。对于该像的情况，下列选项正确的是（ ）</div>
                     <div class="options">
-                        <div>A. 一定成放大的像</div>
-                        <div>B. 可能成缩小的像</div>
-                        <div>C. 成像可能比原来小</div>
-                        <div>D. 成像一定比原来小</div>
+                        <div class="option-item" data-value="A" onclick="selectOption(this)">
+                            <span class="option-letter">A.</span>
+                            <span>一定成放大的像</span>
+                        </div>
+                        <div class="option-item" data-value="B" onclick="selectOption(this)">
+                            <span class="option-letter">B.</span>
+                            <span>可能成缩小的像</span>
+                        </div>
+                        <div class="option-item" data-value="C" onclick="selectOption(this)">
+                            <span class="option-letter">C.</span>
+                            <span>成像可能比原来小</span>
+                        </div>
+                        <div class="option-item" data-value="D" onclick="selectOption(this)">
+                            <span class="option-letter">D.</span>
+                            <span>成像一定比原来小</span>
+                        </div>
                     </div>
+                    <button class="btn-check-answer" onclick="checkChoiceAnswer(this)">查看解析</button>
                     <div class="answer-box">
                         <div class="answer-title">答案：B</div>
                         <div class="solution">
@@ -660,6 +828,68 @@
                 icon.classList.add('rotate');
                 icon.textContent = '▲';
             }
+        }
+
+        // 选择题选项选择
+        function selectOption(element) {
+            const questionBlock = element.closest('.question-block');
+            const options = questionBlock.querySelectorAll('.option-item');
+            
+            // 移除其他选项的选中状态
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // 添加当前选项的选中状态
+            element.classList.add('selected');
+        }
+
+        // 检查选择题答案
+        function checkChoiceAnswer(button) {
+            const questionBlock = button.closest('.question-block');
+            const answerBox = questionBlock.querySelector('.answer-box');
+            const correctAnswer = questionBlock.getAttribute('data-correct');
+            const selectedOption = questionBlock.querySelector('.option-item.selected');
+            
+            // 显示解析
+            answerBox.classList.add('show');
+            button.style.display = 'none';
+            
+            // 如果已选择，显示对错
+            if (selectedOption) {
+                const selectedValue = selectedOption.getAttribute('data-value');
+                const options = questionBlock.querySelectorAll('.option-item');
+                
+                options.forEach(opt => {
+                    const value = opt.getAttribute('data-value');
+                    if (value === correctAnswer) {
+                        opt.classList.add('correct');
+                    } else if (opt.classList.contains('selected') && value !== correctAnswer) {
+                        opt.classList.add('wrong');
+                    }
+                    opt.style.cursor = 'default';
+                    opt.onclick = null; // 禁用点击
+                });
+            }
+        }
+
+        // 检查填空题答案
+        function checkFillAnswer(button) {
+            const questionBlock = button.closest('.question-block');
+            const answerBox = questionBlock.querySelector('.answer-box');
+            const inputs = questionBlock.querySelectorAll('.fill-input');
+            
+            // 显示解析
+            answerBox.classList.add('show');
+            button.style.display = 'none';
+            
+            // 标记输入框（这里只是视觉提示，实际答案在解析中）
+            inputs.forEach(input => {
+                input.readOnly = true;
+                if (input.value.trim() !== '') {
+                    input.classList.add('correct');
+                }
+            });
         }
     </script>
 </body>
